@@ -1,3 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pac-Man Game</title>
+<style>
+  #game-container {
+    width: 400px;
+    height: 400px;
+    border: 2px solid black;
+    position: relative;
+    overflow: hidden;
+  }
+  #pacman {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 180px; /* Initial position */
+    left: 180px; /* Initial position */
+    background-color: yellow;
+    border-radius: 50%;
+    animation: movePacman 0.2s linear infinite;
+  }
+  @keyframes movePacman {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(45deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Pac-Man Game</h1>
+<div id="game-container">
+  <div id="pacman"></div>
+</div>
+
+<script>
+document.addEventListener('keydown', function(event) {
+  const pacman = document.getElementById('pacman');
+  const speed = 20; // Adjust this value to control Pac-Man's speed
+  let x = parseInt(pacman.style.left) || 0;
+  let y = parseInt(pacman.style.top) || 0;
+  
+  switch(event.key) {
+    case 'ArrowUp':
+      y -= speed;
+      pacman.style.transform = 'rotate(-90deg)';
+      break;
+    case 'ArrowDown':
+      y += speed;
+      pacman.style.transform = 'rotate(90deg)';
+      break;
+    case 'ArrowLeft':
+      x -= speed;
+      pacman.style.transform = 'rotate(180deg)';
+      break;
+    case 'ArrowRight':
+      x += speed;
+      pacman.style.transform = 'rotate(0deg)';
+      break;
+  }
+  
+  // Prevent Pac-Man from moving out of bounds
+  x = Math.max(0, Math.min(x, 360));
+  y = Math.max(0, Math.min(y, 360));
+  
+  pacman.style.left = x + 'px';
+  pacman.style.top = y + 'px';
+});
+</script>
+</body>
+</html>
+
+
+
+
 <html>
   <head>
     <title>a cool thing</title>
